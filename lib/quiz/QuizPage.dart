@@ -22,8 +22,11 @@ class _QuizPageState extends State<QuizPage> {
 
   @override
   Widget build(BuildContext context) {
+    Function refresh = () {
+      setState((){});
+    };
     Function handleStart = (int format, int category, int questionAmount) async {
-      quizSession = new QuizSession(format, category, questionAmount);
+      quizSession = new QuizSession(format, category, questionAmount, refresh);
       await quizSession.generateQuestions();
 
       setState(() {
@@ -43,7 +46,7 @@ class _QuizPageState extends State<QuizPage> {
         currentBody = QuizSettings(handleStart: handleStart);
         break;
       case QuizState.inProgress:
-        title = 'Quiz - In Progress...';
+        title = 'Quiz - ${quizSession.currentQuestion+1}/${quizSession.questionAmount}';
         currentBody = QuizInProgress(quizSession: quizSession, handleEnd: handleEnd);
         break;
       case QuizState.result:
@@ -90,10 +93,12 @@ class QuizSession {
   final int format;
   final int category;
   final int questionAmount;
+  final Function refresh;
 
   List<Question> questions = [];
+  int currentQuestion = 0;
 
-  QuizSession(this.format, this.category, this.questionAmount);
+  QuizSession(this.format, this.category, this.questionAmount, this.refresh);
 
     //todo: Update Random question generation
   Future<void> generateQuestions() async {
@@ -127,6 +132,20 @@ class QuizSession {
   int _getLocalIdById(int id) =>
     id % MAXPAGEITEM;
 
+  Question getCurrentQuestion() =>
+    questions[currentQuestion];
+
+  bool nextQuestion() {
+    if (currentQuestion == questionAmount - 1) {
+      return false;
+    }
+    else {
+      currentQuestion++;
+      refresh();
+      return true;
+    }
+  }
+
   List<Vocabulary> _parseResponse(String body) {
     Map<String, dynamic> json = jsonDecode(body);
     List<Vocabulary> result = [];
@@ -138,8 +157,14 @@ class QuizSession {
     return result;
   }
 
-  String getQuestionLabel(int index) {
-    Vocabulary word = questions[index].getAnswer();
+  String getCurrentQuestionLabel() =>
+    getQuestionLabel(currentQuestion);
+
+  String getCurrentQuestionOptionLabel(int optionIndex) =>
+    getOptionLabel(currentQuestion, optionIndex);
+
+  String getQuestionLabel(int questionIndex) {
+    Vocabulary word = questions[questionIndex].getAnswer();
 
     switch (format) {
       case 0:
@@ -151,8 +176,8 @@ class QuizSession {
     }
   }
 
-  String getOptionLabel(int questionIndex, int index) {
-    Vocabulary word = questions[questionIndex].options[index];
+  String getOptionLabel(int questionIndex, int optionIndex) {
+    Vocabulary word = questions[questionIndex].options[optionIndex];
 
     switch (format) {
       case 0:

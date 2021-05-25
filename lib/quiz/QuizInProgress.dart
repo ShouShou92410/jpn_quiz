@@ -16,25 +16,19 @@ class _QuizInProgressState extends State<QuizInProgress> {
   final Function handleEnd;
   _QuizInProgressState(this.quizSession, this.handleEnd);
 
-  int currentQuestion = 0;
-
   @override
   Widget build(BuildContext context) {
     Function handleOptionTap = (int selection) async {
-      quizSession.questions[currentQuestion].submit(selection);
-
-      if (currentQuestion == quizSession.questions.length - 1) {
-        handleEnd();
-      }
-      else {
-        setState(() {
-          currentQuestion++;
-        });
-      }
+      setState(() {
+        quizSession.getCurrentQuestion().submit(selection);
+        if (!quizSession.nextQuestion()) {
+          handleEnd();
+        }
+      });
     };
 
     Widget questionLabel = Center(
-      child: Text(quizSession.getQuestionLabel(currentQuestion))
+      child: Text(quizSession.getCurrentQuestionLabel())
     );
     
     Widget optionSection = Column(
@@ -50,7 +44,7 @@ class _QuizInProgressState extends State<QuizInProgress> {
               onPressed: (){
                 handleOptionTap(x);
               },
-              child: Text(quizSession.getOptionLabel(currentQuestion, x)),
+              child: Text(quizSession.getCurrentQuestionOptionLabel(x)),
             )
           )
         )

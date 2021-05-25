@@ -31,8 +31,7 @@ class _QuizResultState extends State<QuizResult> {
   }
 
   Widget _buildPanelList() {
-    return Expanded(
-      child: Card(
+    return Card(
         child: SingleChildScrollView(
           child: Container(
             child: ExpansionPanelList(
@@ -87,8 +86,7 @@ class _QuizResultState extends State<QuizResult> {
             )
           )
         )
-      )
-    );
+      );
   }
 
   Widget _buildTopSection() {
