@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 enum MyRoutes { 
   home, 
   quiz,
@@ -22,4 +24,7 @@ enum QuizCategory{
   n3,
   n2,
   n1
+}
+extension QuizCategoryEx on QuizCategory {
+  String get getString => describeEnum(this);
 }

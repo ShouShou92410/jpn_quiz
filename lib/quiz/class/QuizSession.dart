@@ -12,8 +12,6 @@ import 'Vocabulary.dart';
 class QuizSession {
   static const int MAXREQUEST = 5;
   static const int MAXPAGEITEM = 20;
-  static const int MAXPAGE = 1000;
-  static const int MAXID = 20000;
 
   static const int OPTIONAMOUNT = 4;
 
@@ -30,11 +28,13 @@ class QuizSession {
     //todo: Update Random question generation
   Future<void> generateQuestions() async {
     Random rand = new Random();
+    int maxPage = QUIZ_CATEGORY_MAX_PAGE[category];
 
     List<Vocabulary> vocabularies = [];
     for (var i = 0; i < MAXREQUEST; i++) {
-      int page = rand.nextInt(MAXPAGE-1) + 1;
-      Uri uri = Uri.https('cors-anywhere.herokuapp.com', 'https://jisho.org/api/v1/search/words', {'keyword': '#common', 'page': page.toString()});   // For dev
+      int page = rand.nextInt(maxPage-1) + 1;
+      String keyword = (category == QuizCategory.common ? '#' : '#jlpt-') + category.getString;
+      Uri uri = Uri.https('cors-anywhere.herokuapp.com', 'https://jisho.org/api/v1/search/words', {'keyword': keyword, 'page': page.toString()});   // For dev
       // Uri uri = Uri.https('jisho.org', 'api/v1/search/words', {'keyword': '#common', 'page': page.toString()});
       Response response = await http.get(uri);
       vocabularies.addAll(_parseResponse(response.body));
