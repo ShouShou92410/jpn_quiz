@@ -9,9 +9,6 @@ class MyRouteInformationParser extends RouteInformationParser<MyRoutes> {
       case "/quiz":
         return MyRoutes.quiz;
         break;
-      case "/vocabularies":
-        return MyRoutes.vocabularies;
-        break;
       case "/about":
         return MyRoutes.about;
         break;
@@ -25,9 +22,6 @@ class MyRouteInformationParser extends RouteInformationParser<MyRoutes> {
     switch (configuration) {
       case MyRoutes.quiz:
         return RouteInformation(location: '/quiz');
-        break;
-      case MyRoutes.vocabularies:
-        return RouteInformation(location: '/vocabularies');
         break;
       case MyRoutes.about:
         return RouteInformation(location: '/about');

@@ -1,6 +1,5 @@
 enum MyRoutes { 
   home, 
-  quiz, 
-  vocabularies, 
+  quiz,
   about 
 }

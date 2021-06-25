@@ -11,7 +11,6 @@ class HomePage extends StatelessWidget {
     Widget buttonSection = Column(
       children:[
         _buildButton(context, 'Quiz', MyRoutes.quiz),
-        _buildButton(context, 'View Vocabularies', MyRoutes.vocabularies),
         _buildButton(context, 'About', MyRoutes.about)
       ]
     );

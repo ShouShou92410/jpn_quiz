@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import '../AboutPage.dart';
 import '../HomePage.dart';
 import '../quiz/QuizPage.dart';
-import '../VocabulariesPage.dart';
 import 'MyRoutes.dart';
 
 class MyRouterDelegate extends RouterDelegate<MyRoutes> 
@@ -44,8 +43,6 @@ class MyRouterDelegate extends RouterDelegate<MyRoutes>
         MaterialPage(key: ValueKey(''), child: HomePage()),
         if (configuration == MyRoutes.quiz)
           MaterialPage(key: ValueKey('quiz'), child: QuizPage()),
-        if (configuration == MyRoutes.vocabularies)
-          MaterialPage(key: ValueKey('vocabularies'), child: VocabulariesPage()),
         if (configuration == MyRoutes.about)
           MaterialPage(key: ValueKey('about'), child: AboutPage()),
       ],
