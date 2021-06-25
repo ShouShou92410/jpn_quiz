@@ -27,8 +27,23 @@ class _QuizInProgressState extends State<QuizInProgress> {
       });
     };
 
-    Widget questionLabel = Center(
-      child: Text(quizSession.getCurrentQuestionLabel())
+    Widget questionLabel = Container(
+      margin: EdgeInsets.all(10),
+      child: Column(
+        children: [
+          Text(
+            quizSession.getCurrentQuestionLabel(),
+            style: TextStyle(
+              fontSize: 20,
+            )
+          ),
+          Divider(
+            color: Colors.black,
+            height: 20,
+            thickness: 3,
+          )
+        ],
+      )
     );
     
     Widget optionSection = Column(
@@ -51,10 +66,9 @@ class _QuizInProgressState extends State<QuizInProgress> {
       ).toList()
     );
 
-    return Container(
+    return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           questionLabel,
           optionSection
