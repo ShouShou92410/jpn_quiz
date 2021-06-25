@@ -31,7 +31,7 @@ class _QuizResultState extends State<QuizResult> {
   }
 
   Widget _buildPanelList() {
-    return Expanded(
+    return Flexible(
         child: Card(
           child: SingleChildScrollView(
             child: Container(
