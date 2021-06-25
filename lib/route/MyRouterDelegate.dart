@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../AboutPage.dart';
 import '../HomePage.dart';
+import '../enumerations.dart';
 import '../quiz/QuizPage.dart';
-import 'MyRoutes.dart';
 
 class MyRouterDelegate extends RouterDelegate<MyRoutes> 
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<MyRoutes> {

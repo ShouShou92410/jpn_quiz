@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'dart:math';
 
+import '../../enumerations.dart';
 import 'Question.dart';
 import 'Vocabulary.dart';
 
@@ -15,8 +16,8 @@ class QuizSession {
 
   static const int OPTIONAMOUNT = 4;
 
-  final int format;
-  final int category;
+  final QuizFormat format;
+  final QuizCategory category;
   final int questionAmount;
   final Function refresh;
 
@@ -92,9 +93,9 @@ class QuizSession {
     Vocabulary word = questions[questionIndex].getAnswer();
 
     switch (format) {
-      case 0:
+      case QuizFormat.en_jp:
         return word.english;
-      case 1:
+      case QuizFormat.jp_en:
         return word.kanji == null ? word.kana : '${word.kanji}(${word.kana})';
       default:
         return "";
@@ -105,9 +106,9 @@ class QuizSession {
     Vocabulary word = questions[questionIndex].options[optionIndex];
 
     switch (format) {
-      case 0:
+      case QuizFormat.en_jp:
         return word.kanji == null ? word.kana : '${word.kanji}(${word.kana})';
-      case 1:
+      case QuizFormat.jp_en:
         return word.english;
       default:
         return "";

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../constants.dart';
+import '../enumerations.dart';
+
 class QuizSettings extends StatefulWidget {
   final Function handleStart;
   QuizSettings({@required this.handleStart});
@@ -14,8 +17,8 @@ class _QuizSettingsState extends State<QuizSettings> {
   _QuizSettingsState(this.handleStart);
 
   final _formKey = GlobalKey<FormState>();
-  int format = 0;
-  int category = 0;
+  QuizFormat format = QuizFormat.en_jp;
+  QuizCategory category = QuizCategory.common;
   int questionAmount = 1;
 
   @override
@@ -37,24 +40,24 @@ class _QuizSettingsState extends State<QuizSettings> {
                       border: Border.all(color: Colors.grey),
                       borderRadius: BorderRadius.circular(5)
                     ),
-                    child: DropdownButtonFormField<int>(
+                    child: DropdownButtonFormField<QuizFormat>(
                       decoration: InputDecoration(
                         border: InputBorder.none
                       ),
                       value: format,
-                      onChanged: (int value){
+                      onChanged: (QuizFormat value){
                         setState(() {
                           format = value;
                         });
                       },
-                      validator: (int value) {
+                      validator: (QuizFormat value) {
                         if (value == null) {
                           return 'Please select a format';
                         }
                         return null;
                       },
-                      items: ['EN → JP', 'JP → EN'].asMap().entries.map((entry) {
-                        return DropdownMenuItem<int>(
+                      items: QUIZ_FORMAT_OPTIONS.entries.map((entry) {
+                        return DropdownMenuItem<QuizFormat>(
                           value: entry.key,
                           child: Text(entry.value)
                         );
@@ -76,24 +79,24 @@ class _QuizSettingsState extends State<QuizSettings> {
                       border: Border.all(color: Colors.grey),
                       borderRadius: BorderRadius.circular(5)
                     ),
-                    child: DropdownButtonFormField<int>(
+                    child: DropdownButtonFormField<QuizCategory>(
                       decoration: InputDecoration(
                         border: InputBorder.none
                       ),
                       value: category,
-                      onChanged: (int value){
+                      onChanged: (QuizCategory value){
                         setState(() {
                           category = value;
                         });
                       },
-                      validator: (int value) {
+                      validator: (QuizCategory value) {
                         if (value == null) {
                           return 'Please select a category';
                         }
                         return null;
                       },
-                      items: ['Common Words', 'N5', 'N4', 'N3', 'N2', 'N1'].asMap().entries.map((entry) {
-                        return DropdownMenuItem<int>(
+                      items: QUIZ_CATEGORY_OPTIONS.entries.map((entry) {
+                        return DropdownMenuItem<QuizCategory>(
                           value: entry.key,
                           child: Text(entry.value)
                         );

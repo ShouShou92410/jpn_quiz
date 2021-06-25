@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'MyRoutes.dart';
+import '../enumerations.dart';
 
 class MyRouteInformationParser extends RouteInformationParser<MyRoutes> {
   @override

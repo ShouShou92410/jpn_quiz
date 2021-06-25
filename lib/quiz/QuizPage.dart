@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'QuizState.dart';
+import '../enumerations.dart';
 import 'QuizSettings.dart';
 import 'QuizInProgress.dart';
 import 'QuizResult.dart';
@@ -21,7 +21,7 @@ class _QuizPageState extends State<QuizPage> {
     Function refresh = () {
       setState((){});
     };
-    Function handleStart = (int format, int category, int questionAmount) async {
+    Function handleStart = (QuizFormat format, QuizCategory category, int questionAmount) async {
       quizSession = new QuizSession(format, category, questionAmount, refresh);
       await quizSession.generateQuestions();
 
