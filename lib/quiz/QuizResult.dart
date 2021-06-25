@@ -105,9 +105,9 @@ class _QuizResultState extends State<QuizResult> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text('EN → JP'),
-                  Text('Common Words'),
-                  Text('10 questions')
+                  Text(quizSession.getFormatLabel()),
+                  Text(quizSession.getCategoryLabel()),
+                  Text(quizSession.getQuestionAmountLabel())
                 ]
               )
             )

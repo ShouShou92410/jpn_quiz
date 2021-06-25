@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'dart:math';
 
+import '../../constants.dart';
 import '../../enumerations.dart';
 import 'Question.dart';
 import 'Vocabulary.dart';
@@ -82,6 +83,15 @@ class QuizSession {
     }
     return result;
   }
+
+  String getFormatLabel() =>
+    '${QUIZ_FORMAT_OPTIONS[format]}';
+
+  String getCategoryLabel() =>
+    '${QUIZ_CATEGORY_OPTIONS[category]}';
+
+  String getQuestionAmountLabel() =>
+    '$questionAmount questions';
 
   String getCurrentQuestionLabel() =>
     getQuestionLabel(currentQuestion);
