@@ -20,6 +20,7 @@ class _QuizSettingsState extends State<QuizSettings> {
   QuizFormat format = QuizFormat.en_jp;
   QuizCategory category = QuizCategory.common;
   int questionAmount = 1;
+  bool isStarting = false;
 
   @override
   Widget build(BuildContext context) {
@@ -149,12 +150,32 @@ class _QuizSettingsState extends State<QuizSettings> {
       style: ElevatedButton.styleFrom(
         padding: EdgeInsets.symmetric(vertical: 20)
       ),
-      onPressed: (){
+      onPressed: isStarting ? null : (){
         if (_formKey.currentState.validate()) {
+          setState(() {
+            isStarting = true;
+          });
           handleStart(format, category, questionAmount);
         }
       },
-      child: Text('Start'),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 50),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(isStarting ? '' : 'Start'),
+            if (isStarting)
+              SizedBox(
+                height: 20.0,
+                width: 20.0,
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.grey),
+                  strokeWidth: 2,
+                )
+              )
+          ]
+        )
+      )
     );
 
     return Container(
