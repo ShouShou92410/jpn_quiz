@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'QuizPage.dart';
+import 'class/QuizSession.dart';
 
 class QuizInProgress extends StatefulWidget {
   final QuizSession quizSession;
