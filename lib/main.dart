@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp.router(
       title: 'JPN Quiz',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        primarySwatch: Colors.purple
       ),
       routeInformationParser: MyRouteInformationParser(), 
       routerDelegate: _delegate

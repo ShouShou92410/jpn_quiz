@@ -6,7 +6,18 @@ import 'route/MyRouterDelegate.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Widget titleSection = Text('Title');
+    Widget titleSection = Center(
+      child: Container(
+        margin: EdgeInsets.all(10),
+        child: Text(
+          'JPN Quiz',
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.bold
+          )
+        )
+      )
+    );
 
     Widget buttonSection = Column(
       children:[
@@ -25,7 +36,7 @@ class HomePage extends StatelessWidget {
           Expanded(
             flex: 6, 
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 titleSection,

@@ -19,7 +19,7 @@ class _QuizSettingsState extends State<QuizSettings> {
   final _formKey = GlobalKey<FormState>();
   QuizFormat format = QuizFormat.en_jp;
   QuizCategory category = QuizCategory.common;
-  int questionAmount = 1;
+  int questionAmount = 10;
   bool isStarting = false;
 
   @override
